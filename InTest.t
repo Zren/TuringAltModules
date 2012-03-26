@@ -27,7 +27,7 @@ In.Initialize ()
 
 loop
     In.Update ()
-    exit when In.KeyDown (KEY_ESC)
+    exit when In.KeyFired (KEY_ESC)
 
     cls
     put "ESC to Exit", skip

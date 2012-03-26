@@ -156,20 +156,10 @@ module Gui
 	    nextFocus ()
 	end if
 
-
-	% TODO: Fix shifted character input
 	if focus not= nil then
 	    for c : char
 		if In.KeyFired (c) then
 		    var k : string := c
-		    /*
-		     if In.KeyPressed (KEY_SHIFT) then
-		     var ascii := ord (k) - 32
-		     if 0 <= ascii and ascii < 256 then
-		     k := chr (ascii)
-		     end if
-		     end if
-		     */
 		    focus -> onFocusKeyFired (k)
 		end if
 	    end for

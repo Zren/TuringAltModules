@@ -1,7 +1,7 @@
 % Advanced Input - Keyboard and Mouse Events (Not Simple States)
 %
 %   Written by: Chris (Zren / Shade)
-%      Version: 1.0
+%      Version: 2.0
 
 unit
 module In
@@ -12,7 +12,7 @@ module In
 	DoubleClick, UpdateMouseLastUp, MouseUp, MouseDown, MousePressed, MouseMoved,
 	DoubleType, UpdateCharsLastUp, KeyUp, KeyDown, KeyPressed, KeyFired,
 	mouse, mouseLast,
-	charsFired, charsLastFired,
+	charsFiredCheck, charsLastFired,
 	charsPressed, charsLast, charsLastUp,
 	chars
 
@@ -23,7 +23,7 @@ module In
 
     var mouse, mouseLast : MouseData
     var charsLastFired, charsLastUp : array char of int
-    var charsEmpty, charsFired,
+    var charsEmpty, charsFiredCheck,
 	charsPressed, charsLast : array char of boolean
 
     %%%
@@ -121,7 +121,7 @@ module In
 
     % Checks if found in Input.getchar(char) this cycle.
     fcn KeyFired (s : char) : boolean
-	result charsFired (s)
+	result charsFiredCheck (s)
     end KeyFired
 
     proc UpdateCharsLastFired (s : char)
@@ -138,11 +138,11 @@ module In
 	charsLast := charsPressed
 
 	% Input Buffer (KeyDown Event)
-	charsFired := charsEmpty
+	charsFiredCheck := charsEmpty
 	loop
 	    exit when not hasch
 	    var c := getchar
-	    charsFired (c) := true
+	    charsFiredCheck (c) := true
 	    UpdateCharsLastFired (c)
 	end loop
 
